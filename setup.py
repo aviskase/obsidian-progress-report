@@ -8,7 +8,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 setup(
-    name='obisidian-progress-report',
+    name='obsidian-progress-report',
     description='A simple command line app for generating progress report for contributions in the Obsidian vault',
     version='0.1.1',
     packages=find_packages(),  # list of all packages
