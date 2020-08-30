@@ -7,12 +7,12 @@ HERE = pathlib.Path(__file__).parent
 # The text of the README file
 README = (HERE / "README.md").read_text()
 
-setup (
-    name = 'obisidian-progress-report',
-    description = 'A simple command line app for generating progress report for contributions in the Obsidian vault',
-    version = '0.1.0',
-    packages = find_packages(), # list of all packages
-    python_requires='>=3.8', 
+setup(
+    name='obisidian-progress-report',
+    description='A simple command line app for generating progress report for contributions in the Obsidian vault',
+    version='0.1.1',
+    packages=find_packages(),  # list of all packages
+    python_requires='>=3.8',
     entry_points='''
         [console_scripts]
         obsidian-progress-report=obsidian_progress_report.__main__:main
@@ -22,7 +22,7 @@ setup (
     long_description_content_type="text/markdown",
     license='Unlicense',
     url='https://github.com/aviskase/obsidian-progress-report',
-    download_url='https://github.com/aviskase/obsidian-progress-report/archive/1.0.0.tar.gz',
+    download_url='https://github.com/aviskase/obsidian-progress-report/archive/0.1.1.tar.gz',
     author_email='aviskase@gmail.com',
     classifiers=[
         "License :: Public Domain",
