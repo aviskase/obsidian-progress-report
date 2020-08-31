@@ -3,6 +3,8 @@ from typing import Tuple, List
 from pathlib import Path
 from datetime import date
 
+from frontmatter import Frontmatter
+
 
 def generate_report(vault: Path, output_dir: Path, start: date, end: date, sections):
     created, updated = gather_files(vault, start, end)
@@ -28,12 +30,15 @@ def gather_files(dir: Path, start: date, end: date) -> Tuple[List[Path], List[Pa
         if system == 'Windows':
             create_time = date.fromtimestamp(f.stat().st_ctime)
         elif system == 'Linux':
-            raise NotImplementedError('Does not support Linux (yet)')
+            create_time = get_date_from_frontmatter(f, 'created')
         else:
             create_time = date.fromtimestamp(f.stat().st_birthtime)
         update_time = date.fromtimestamp(f.stat().st_mtime)
-        if start <= create_time <= end:
-            created.append(f)
+        if create_time:
+            if start <= create_time <= end:
+                created.append(f)
+            elif start <= update_time <= end:
+                updated.append(f)
         elif start <= update_time <= end:
             updated.append(f)
     return created, updated
@@ -65,3 +70,14 @@ class Report:
     def path_to_list_item(self, path: Path) -> str:
         path_link = str(path.relative_to(self.vault).with_suffix(''))
         return f'- [[{path_link}]]\n'
+
+
+def get_date_from_frontmatter(f: Path, field) -> date:
+    try:
+        data = Frontmatter.read_file(f)
+        value = data['attributes'][field]
+        if type(value) is date:
+            return value
+        return value.date()
+    except Exception:
+        print(f'Couldn\'t get "{field}" for file {f}')

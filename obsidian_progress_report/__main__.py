@@ -46,6 +46,11 @@ def main():
         '-i', '--include', choices=['created', 'updated', 'all'], default='all',
         help='Which sections report should contain.'
     )
+    parser.add_argument(
+        '-c', '--created', default='created',
+        help='For Linux you must have YAML frontmatter in files to get the creation date. '
+             'By default script searches for "created" field which can be either ISO date or datetime'
+    )
     args = parser.parse_args()
     output_dir: Path = (args.vault / args.output).absolute()
     print(f'Creating output directory: {output_dir}')
