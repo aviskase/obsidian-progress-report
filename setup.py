@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 setup(
     name='obsidian-progress-report',
     description='A simple command line app for generating progress report for contributions in the Obsidian vault',
-    version='0.1.1',
+    version='0.2.0',
     packages=find_packages(),  # list of all packages
     python_requires='>=3.8',
     entry_points='''
@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     license='Unlicense',
     url='https://github.com/aviskase/obsidian-progress-report',
-    download_url='https://github.com/aviskase/obsidian-progress-report/archive/0.1.1.tar.gz',
+    download_url='https://github.com/aviskase/obsidian-progress-report/archive/0.2.0.tar.gz',
     author_email='aviskase@gmail.com',
     classifiers=[
         "License :: Public Domain",

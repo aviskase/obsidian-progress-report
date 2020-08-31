@@ -3,7 +3,7 @@ import calendar
 from datetime import date
 from pathlib import Path
 
-from obsidian_progress_report.report import generate_report
+from .report import generate_report
 
 
 def dir_path(path: str) -> Path:

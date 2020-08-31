@@ -1,3 +1,4 @@
+import platform
 from typing import Tuple, List
 from pathlib import Path
 from datetime import date
@@ -23,7 +24,13 @@ def gather_files(dir: Path, start: date, end: date) -> Tuple[List[Path], List[Pa
     for f in files:
         if '.trash' in f.parts:
             continue
-        create_time = date.fromtimestamp(f.stat().st_ctime)
+        system = platform.system()
+        if system == 'Windows':
+            create_time = date.fromtimestamp(f.stat().st_ctime)
+        elif system == 'Linux':
+            raise NotImplementedError('Does not support Linux (yet)')
+        else:
+            create_time = date.fromtimestamp(f.stat().st_birthtime)
         update_time = date.fromtimestamp(f.stat().st_mtime)
         if start <= create_time <= end:
             created.append(f)
