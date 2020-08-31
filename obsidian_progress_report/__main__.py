@@ -35,11 +35,11 @@ def main():
     end_of_month = current_day.replace(day=last_day)
 
     parser.add_argument(
-        '-s', '--start', type=date, default=start_of_month,
+        '-s', '--start', type=date_arg, default=start_of_month,
         help='Start of report period, by default is set to the start of current month. Format: "YYYY-MM-DD".'
     )
     parser.add_argument(
-        '-e', '--end', type=date, default=end_of_month,
+        '-e', '--end', type=date_arg, default=end_of_month,
         help='End of report period, by default is set to the end of current month. Format: "YYYY-MM-DD".'
     )
     parser.add_argument(
